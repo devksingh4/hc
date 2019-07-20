@@ -1,16 +1,30 @@
 <bottomBar>
     <style>
-        #bottomBar {
-
-        }
-
+                .tester {
+    -webkit-filter: grayscale(100%);
+       -moz-filter: grayscale(100%);
+         -o-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+            filter: grayscale(100%); 
+}
     </style>
 
-
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+            <div class="navbar-nav px-4" style="display: flex; justify-content: space-evenly; flex-wrap: nowrap; flex-direction:row; align-content: center;">
+              <a class="nav-item tester px-3" href="#"><i style="font-size: 2rem;" class="material-icons large">library_books</i><span class="sr-only">(current)</span></a>
+              <a class="nav-item tester px-3" href="#"><i style="font-size: 2rem;" class="material-icons large">poll</i></a>
+              <a class="nav-item tester px-3" href="#"><i style="font-size: 2rem;" class="material-icons large">chat</i></a>
+              <a class="nav-item tester px-3" href="#"><i style="font-size: 2rem;" class="material-icons large">help</i></a>
+              <a class="nav-item tester px-3" href="#"><i style="font-size: 2rem;" class="material-icons large">announcement</i></a>
+            </div>
+          </div>
+        </nav>
+    </body>
     <script>
       //self.buttons = JSON.parse(opts.buttons)
       this.on('mount', () => {
-            console.log("mounted " + opts.name)
+            console.log("mounted bottom bar")
         })
     </script>
 </bottomBar>
