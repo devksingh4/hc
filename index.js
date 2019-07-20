@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session')
 const exphbs = require('express-handlebars')
 const auth = require('./auth/google.js') // auth configuration
+const bodyParser = require('body-parser')
 
 const aihandler = require('./handlers/aihandler.js')
 
@@ -18,6 +19,8 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(cookieParser())
 
+app.use(bodyParser())
+
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
 app.use(express.static(path.join(__dirname, 'public'))) // public root
@@ -27,6 +30,30 @@ auth(passport)
 app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email'] // set the scope of authentication and have oauth screen shown 
 }))
+
+app.get('/survey', (req, res) => {
+  res.render('test')
+})
+
+app.post('/survey/submit', (req, res) => {
+  let result = [
+    req.body.interest,
+    req.body.down,
+    req.body.asleep,
+    req.body.tired,
+    req.body.appetite,
+    req.body.feeling,
+    req.body.concentrating,
+    req.body.slow,
+    req.body.death
+  ]
+
+  result = result.map(x => parseInt(x))
+
+  aihandler.evaluate(result, (result) => {
+    res.send(result)
+  })
+})
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { // authenticate using google method, auth_failure is what page will be displayed if failure 
