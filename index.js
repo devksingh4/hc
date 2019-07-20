@@ -100,8 +100,10 @@ app.post('/survey/submit', (req, res) => {
   
     aihandler.evaluate(result, (result) => {
       req.session.score = result * 100
+
+      console.log(req.session.score)
   
-      res.redirect('/result')
+      res.json({score: req.session.score})
     })
   }
 })
