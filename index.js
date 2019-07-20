@@ -93,7 +93,8 @@ app.post('/survey/submit', (req, res) => {
       req.body.feeling,
       req.body.concentrating,
       req.body.slow,
-      req.body.death
+      req.body.death,
+      req.body.difficulty
     ]
   
     result = result.map(x => parseInt(x))
