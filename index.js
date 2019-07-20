@@ -32,27 +32,49 @@ app.get('/auth/google', passport.authenticate('google', {
 }))
 
 app.get('/survey', (req, res) => {
-  res.render('test')
+  if(req.session.uid) {
+    res.render('survey')
+  }
+})
+
+app.get('/result', (req, res) => {
+  if(req.session.uid && req.session.score) {
+    console.log(req.session.score)
+
+    if(req.session.score < 20) {
+      res.render('result', {
+        score: "You are depressed"
+      })
+    } else {
+      res.render('result', {
+        score: "You are NOT depressed"
+      })
+    }
+  }
 })
 
 app.post('/survey/submit', (req, res) => {
-  let result = [
-    req.body.interest,
-    req.body.down,
-    req.body.asleep,
-    req.body.tired,
-    req.body.appetite,
-    req.body.feeling,
-    req.body.concentrating,
-    req.body.slow,
-    req.body.death
-  ]
-
-  result = result.map(x => parseInt(x))
-
-  aihandler.evaluate(result, (result) => {
-    res.send(result)
-  })
+  if(req.session.uid) {
+    let result = [
+      req.body.interest,
+      req.body.down,
+      req.body.asleep,
+      req.body.tired,
+      req.body.appetite,
+      req.body.feeling,
+      req.body.concentrating,
+      req.body.slow,
+      req.body.death
+    ]
+  
+    result = result.map(x => parseInt(x))
+  
+    aihandler.evaluate(result, (result) => {
+      req.session.score = result * 100
+  
+      res.redirect('/result')
+    })
+  }
 })
 
 app.get('/auth/google/callback',
