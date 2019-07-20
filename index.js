@@ -8,6 +8,8 @@ const cookieSession = require('cookie-session')
 const exphbs = require('express-handlebars')
 const auth = require('./auth/google.js') // auth configuration
 
+const aihandler = require('./handlers/aihandler.js')
+
 app.use(cookieSession({
   name: 'session',
   keys: ['3e7yygruhefuhrbeuh3ruywaujgeger']
@@ -53,18 +55,6 @@ app.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-app.post('/submitgamedata', (req, res) => {
-  let uid = req.session.uid
-  let dataArray = JSON.parse(req.query.data); // known issue: sending non utf-8 characters WILL BREAK this, but we have a catch
-  if (uid) {
-    console.log(dataArray)
-    console.log(typeof(dataArray))
-    res.sendStatus(200) // ok 
-  } else {
-    res.sendStatus(403) // forbiden 
-  }
-})
-
 app.get('/', (req, res) => {
   let uid = req.session.uid
   let ruser_name = req.session.name
@@ -80,6 +70,5 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
   res.sendStatus(404)
 })
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
