@@ -10,6 +10,10 @@ const auth = require('./auth/google.js') // auth configuration
 const bodyParser = require('body-parser')
 
 const aihandler = require('./handlers/aihandler.js')
+const chathandler = require('./handlers/chathandler.js')
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.use(cookieSession({
   name: 'session',
@@ -37,17 +41,35 @@ app.get('/survey', (req, res) => {
   }
 })
 
+app.get('/messages', (req, res) => {
+  res.json(chathandler.chatHistory)
+})
+
+app.post('/message/new', (req, res) => {
+  if(req.session.uid) {
+    chathandler.newChat(req.session.name, req.session.uid, req.body.message)
+
+    res.json({})
+  }
+})
+
+app.get('/chat', (req, res) => {
+  if(req.session.uid) {
+    res.render('chat', {
+      name: req.session.name
+    })
+  }
+})
+
 app.get('/result', (req, res) => {
   if(req.session.uid && req.session.score) {
-    console.log(req.session.score)
-
     if(req.session.score < 20) {
       res.render('result', {
-        score: "You are depressed"
+        message: "You are depressed"
       })
     } else {
       res.render('result', {
-        score: "You are NOT depressed"
+        message: "You are NOT depressed"
       })
     }
   }

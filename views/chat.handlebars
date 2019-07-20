@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div class="container">
+	<br>
+		<div class="jumbotron">
+			<h1 class="display-4">Send Message</h1>
+			<br>
+			<textarea id="message" class="form-control" placeholder="Your Message Here">
+			</textarea>
+			<br>
+			<button id="send" onclick="buttonClicked()" class="btn btn-success">Send</button>
+		</div>
+		<div id="messages">
+		
+		</div>
+	</div>
+
+	<script>
+		function load() {
+			$.get("http://localhost:8000/messages", function(data, status){
+				data.forEach(addMessage)
+			})
+		}
+		
+		function buttonClicked() {
+			let message = document.getElementById('message').value
+			document.getElementById('message').value = ""
+			
+			addMessage({
+				name: "{{name}}",
+				message: message
+			})
+
+			sendMessage(message)
+		}
+
+		function addMessage(message) {
+			console.log(message)
+			$('#messages').append('<h2>' + message.name + '</h2><h3>' + message.message + "</h3>")
+		}
+
+		function sendMessage(message) {
+			$.post('/message/new', {
+				message: message
+			})
+		}
+
+		window.onload = function() {
+			load()
+		}
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			crossorigin="anonymous">
+	</script>
+</body>
+</html>
