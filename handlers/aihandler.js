@@ -23,7 +23,8 @@ net.train([
   {input: [0, 3, 0, 0, 0, 0, 1, 0, 3, 1], output: [0.3]},
   {input: [3, 0, 0, 0, 0, 1, 1, 0, 3, 2], output: [0.05]},
   {input: [2, 0, 3, 2, 1, 1, 2, 2, 0, 3], output: [0.60]},
-  {input: [0, 0, 0, 0, 0, 0, 0, 0, 0, 3], output: [0.90]}
+  {input: [0, 0, 0, 0, 0, 0, 0, 0, 0, 3], output: [0.90]},
+  {input: [2, 1, 3, 3, 2, 1, 2, 1, 0, 2], output: [0.6]}
 ])                                  
 
 module.exports.evaluate = (query, callback) => {

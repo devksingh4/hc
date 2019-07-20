@@ -13,7 +13,7 @@ module.exports = (passport) => {
   passport.use(new GoogleStrategy({
     clientID: '55494963706-k03744kitb4ma77aajdfjrkh56h00pii.apps.googleusercontent.com',
     clientSecret: "3bAxrfgUVxza9IKPVZbljQMu",
-    callbackURL: host + '/auth/google/callback'
+    callbackURL: "http://" + host + '/auth/google/callback'
   },
   (token, refreshToken, profile, done) => {
     return done(null, {
