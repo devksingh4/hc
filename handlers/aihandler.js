@@ -1,5 +1,6 @@
 const brain = require('brain.js')
 const fs = require('fs')
+const request = require('request')
 
 const config = {
   binaryThresh: 0.5,
