@@ -1,0 +1,134 @@
+.text-center {
+    text-align: center;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  body {
+      /* The image used */
+      background-image: url("../img/landing.jpg");
+  
+      /* Full height */
+      height: 100%;
+  
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  
+  .signin {
+      border: 2px solid  #ececec;
+      padding: 15px;
+      background-color: white;
+      width: 700px;
+      height: 200px;
+      overflow: auto;
+      margin: auto;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      border-radius: 25px;
+      display: block;
+  }
+  
+  .column {
+      float: left;
+      width: 33%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+      content: "";
+      display: table;
+      clear: both;
+  }
+  
+  .outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .middle {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .inner {
+  
+    width: 30%;
+    /*whatever width you want*/
+  }
+  
+  .google {
+    background-color: #dd4b39;
+    width: 230px;
+  }
+  
+  .google:visited {
+    background-color: #dd4b39;
+  }
+  
+  .google:hover {
+    background-color: #dd4b39;
+  }
+  
+  .google:active {
+    background-color: #dd4b39;
+  }
+  
+  .
+  
+  .msg-text {
+    /*color: #505050;*/
+    font-weight: 400;
+  }
+  
+  .vl {
+      border-left: 2px solid #ececec;
+      height: 330px;
+      position: absolute;
+      left: 48%;
+      margin-left: -3px;
+      top: 0;
+      margin: auto;
+  }
+  
+  .btn {
+    /*flex: 1 1 auto;*/
+    margin: 0 auto;
+    /*padding: 30px;*/
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    width: 50%;
+    color: white;
+   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+    box-shadow: 0 0 20px #eee;
+    border-radius: 15px;
+   }
+  
+  /* Demo Stuff End -> */
+  
+  /* <- Magic Stuff Start */
+  
+  .btn:hover {
+    background-position: right center; /* change the direction of the change here */
+  }
+  
+  .btn-grad-red {
+    background-image: linear-gradient(to right, #EB3349 0%, #F45C43 51%, #EB3349 100%)
+  }
+  
+  .btn-grad-blue {
+    background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%)
+  }
+  
+  .btn-grad-gray {
+    background-image: linear-gradient(to right, #232526 0%, #414345 51%, #232526 100%)
+  }
+  

@@ -1,0 +1,29 @@
+<customButton>
+    <button onclick={clickhandler} class="mapButtons {opts.buttonType}">{opts.title}</button>
+    <style>
+    .mapButtons {
+        border-radius: 0.5em;
+        background-color: pink;
+        font-size: 1.3em;
+        outline: none !important;
+        border:1px solid rgb(255, 255, 255);
+        box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.1);
+        padding: 0.4vw;
+        font-size: 1.5em;
+    } 
+    .blue {
+        background-color: blue;
+    }
+    </style>
+    <script>
+        this.on('mount', () => {
+            console.log("mounted " + opts.id)
+        })
+        this.clickhandler = () => {
+            console.log("clicked " + opts.id)
+        }
+        this.on('unmount', () => {
+            console.log("unmounted " + opts.id)
+        })
+    </script>
+</customButton>

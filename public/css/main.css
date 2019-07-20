@@ -1,0 +1,274 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+      url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+      url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  html, body {
+      /*background-image: url("../img/background.png");*/
+      background-color: #f0f0f0;
+      margin: 0;
+      height: 100%;
+  }
+  
+  .center {
+      margin: 0 auto;
+      position: relative;
+  }
+  
+  .column {
+      float: left;
+      width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+      content: "";
+      display: table;
+      clear: both;
+  }
+  
+  .google {
+    background-color: #dd4b39;
+    width: 230px;
+  }
+  
+  .google:visited {
+    background-color: #dd4b39;
+  }
+  
+  .google:hover {
+    background-color: #dd4b39;
+  }
+  
+  .google:active {
+    background-color: #dd4b39;
+  }
+  
+  .twitter {
+    background-color: #00aced;
+    width: 230px;
+  }
+  
+  .twitter:active {
+    background-color: #00aced;
+  }
+  
+  .twitter:hover {
+    background-color: #00aced;
+  }
+  
+  .twitter:visited {
+    background-color: #00aced;
+  }
+  
+  .github {
+    background-color: #333;
+    width: 230px;
+  }
+  
+  .github:hover {
+    background-color: #333;
+  }
+  
+  .github:active {
+    background-color: #333;
+  }
+  
+  .github:visited {
+    background-color: #333;
+  }
+  
+  .msg-text {
+    /*color: #505050;*/
+    font-weight: 400;
+  }
+  
+  .vl {
+      border-left: 2px solid #ececec;
+      height: 330px;
+      position: absolute;
+      left: 48%;
+      margin-left: -3px;
+      top: 0;
+      margin: auto;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  .user-info {
+    width: 100%;
+    background-color: white;
+  }
+  
+  .pfp {
+    width: 27px;
+    height: 27px;
+  }
+  
+  .nav-wrapper {
+    background-color: rgb(41, 182, 246);
+  }
+  
+  .write-form {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  
+  .outer {
+    left: 20%;
+    width: 1800px;
+    height: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .inner {
+      float: left;
+      width: 50%;
+  }
+  
+  .write-input {
+    width: 90px;
+  }
+  
+  .warticle {
+    white-space: pre-line;
+  }
+  
+  pre {
+    white-space: pre-line;
+    border: white;
+    color: gray;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+  }
+  
+  .dcenter {
+    margin: auto;
+    width: 10%;
+    padding-left: 3%;
+  }
+  
+  .formcenter {
+    margin: auto;
+    width: 60%;
+    padding-left: 3%;
+  }
+  
+  .pcenter {
+    margin: auto;
+    width: 80%;
+    padding-left: 3%;
+  }
+  
+  .subcomcenter {
+    margin: auto;
+    width: 90%;
+    padding-left: 3%;
+  }
+  
+  .commentcenter {
+    margin: auto;
+    width: 42%;
+    padding-left: 17%;
+  }
+  
+  .nav li {
+    padding: 3%;
+  }
+  
+  .subnv {
+    width: 8.7%;
+    margin: auto;
+  }
+  
+  .article-divide {
+    width: 15%;
+    margin: auto;
+  }
+  
+  .vertical-divider {
+    border-left:1px solid #38546d; 
+    border-right:1px solid #16222c; 
+    height:80px;
+    position:absolute;
+    right:249px;
+    top:10px; 
+  }
+  
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+  
+  #myDiv {
+    display: none;
+    text-align: center;
+  }
+  
+  .mid {
+    right: 0;
+    left: 0;
+  }
+  
+  
