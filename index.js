@@ -8,12 +8,17 @@ const cookieSession = require('cookie-session')
 const exphbs = require('express-handlebars')
 const auth = require('./auth/google.js') // auth configuration
 const bodyParser = require('body-parser')
+const xss = require('xss')
 
 const aihandler = require('./handlers/aihandler.js')
 const chathandler = require('./handlers/chathandler.js')
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+
+io.on('connection', () =>{
+  console.log('a user is connected')
+})
 
 app.use(cookieSession({
   name: 'session',
@@ -38,19 +43,21 @@ app.get('/auth/google', passport.authenticate('google', {
 app.get('/survey', (req, res) => {
   if(req.session.uid) {
     res.render('survey')
+  } else {
+    res.status('404').render('404')
   }
 })
 
-app.get('/messages', (req, res) => {
-  res.json(chathandler.chatHistory)
-})
+app.get('/messages', (req, res) => res.json(chathandler.chatHistory))
 
-app.post('/message/new', (req, res) => {
-  if(req.session.uid) {
-    chathandler.newChat(req.session.name, req.session.uid, req.body.message)
+app.post('/messages', async(req, res) => {
+  io.emit('message', req.body)
 
-    res.json({})
-  }
+  let message = xss(req.body.message)
+
+  chathandler.newChat(req.session.name, req.session.uid, message)
+
+  res.json({})
 })
 
 app.get('/chat', (req, res) => {
@@ -142,4 +149,4 @@ app.get('*', (req, res) => {
   res.sendStatus(404)
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+http.listen(port, () => console.log(`Example app listening on port ${port}!`))

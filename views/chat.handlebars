@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -19,38 +20,30 @@
 	</div>
 
 	<script>
-		function load() {
-			$.get("http://localhost:8000/messages", function(data, status){
-				data.forEach(addMessage)
-			})
-		}
-		
-		function buttonClicked() {
-			let message = document.getElementById('message').value
-			document.getElementById('message').value = ""
-			
-			addMessage({
-				name: "{{name}}",
-				message: message
-			})
-
-			sendMessage(message)
-		}
-
-		function addMessage(message) {
-			console.log(message)
-			$('#messages').append('<h2>' + message.name + '</h2><h3>' + message.message + "</h3>")
-		}
-
-		function sendMessage(message) {
-			$.post('/message/new', {
-				message: message
-			})
-		}
+   	var socket = io();
 
 		window.onload = function() {
-			load()
+			$.get('/messages', (data) => {
+				data.forEach(addMessages);
+			})	
 		}
+		 
+		function buttonClicked() {
+      sendMessage({name: "{{name}}", message: $("#message").val()});
+			document.getElementById('message').value = ""
+
+      getMessages()
+    }
+
+    socket.on('message', addMessages)
+
+    function addMessages(message) {
+      $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+    }
+
+    function sendMessage(message) {
+      $.post('/messages', message)
+    }
 	</script>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.js"
