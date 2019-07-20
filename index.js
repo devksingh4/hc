@@ -53,7 +53,7 @@ app.get('/messages', (req, res) => res.json(chathandler.chatHistory))
 app.post('/messages', async(req, res) => {
   io.emit('message', req.body)
 
-  let message = xss(req.body.message)
+  let message = xss(req.body.message).escape()
 
   chathandler.newChat(req.session.name, req.session.uid, message)
 
