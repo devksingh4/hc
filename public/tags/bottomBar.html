@@ -1,6 +1,32 @@
 <bottomBar>
+    <p>Hi</p>
+
     <style>
-    
-    
+        .button {
+            width: 25%;
+        }
+
     </style>
+
+    <div class="container-fluid" style="width: 100%; display: flex;">
+ <!-- Grid row -->
+<div class="row" style="position:absolute; bottom: 0; width: 100%; display: flex;">
+
+        <!-- Grid column -->
+        <div class="col">
+      
+          <ul class="nav peach-gradient lighten-3 py-4 mb-4 font-weight-bold z-depth-1">
+            <li class="nav-item">
+              <a class="nav-link active white-text" style="width: 100%; display: flex; flex-wrap: wrap;" href="/survey">Health Assessment</a>
+            </li>
+          </ul>
+      
+    </div>
+
+    <script>
+      //self.buttons = JSON.parse(opts.buttons)
+      this.on('mount', () => {
+            console.log("mounted ")
+        })
+    </script>
 </bottomBar>
