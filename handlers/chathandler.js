@@ -2,8 +2,6 @@ const identityhandler = require('./identityhandler.js')
 
 const chatHistory = []
 
-var tempLobby = this.generateLobby()
-
 module.exports.generateLobby = () => {
 	return {
 		uid: identityhandler.gen(),
@@ -11,6 +9,8 @@ module.exports.generateLobby = () => {
 		two: undefined
 	}
 }
+
+var tempLobby = this.generateLobby()
 
 module.exports.joinLobby = (uid) => {
 	if(tempLobby.one == undefined) {
