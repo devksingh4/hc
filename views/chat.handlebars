@@ -4,7 +4,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <script src="/socket.io/socket.io.js"></script>
 </head>
-<body>
+<body style="background-color: snow;">
+	<topBar id="topBar"></topBar>
+	<bottomBar id="bottombar"></bottomBar>
 	<div class="container">
 	<br>
 		<div class="jumbotron">
@@ -50,6 +52,15 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"
 			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 			crossorigin="anonymous">
+	</script>
+
+	<script type="riot/tag" src="/tags/topBar.html"></script>
+	<script type="riot/tag" src="/tags/bottomBar.html"></script>
+	<script>
+			riot.mount("topBar", {    // this is basically client-side rendering 
+			});
+			riot.mount("bottomBar", {    // this is basically client-side rendering 
+			});
 	</script>
 </body>
 </html>

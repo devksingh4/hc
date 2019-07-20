@@ -3,7 +3,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     </head>
-    <body>
+    <body style="background-color: snow;">
+        <topBar id="topBar"></topBar>
+        <bottomBar id="bottombar"></bottomBar>
         <form method="POST" action="/survey/submit">
             1. Little interest or pleasure in doing things
             <select name="interest">
@@ -84,5 +86,14 @@ than usual
 <br>
             <input type="submit" value="Submit">
         </form>
+
+        <script type="riot/tag" src="/tags/topBar.html"></script>
+        <script type="riot/tag" src="/tags/bottomBar.html"></script>
+        <script>
+            riot.mount("topBar", {    // this is basically client-side rendering 
+            });
+            riot.mount("bottomBar", {    // this is basically client-side rendering 
+            });
+        </script>
     </body>
 </html>
