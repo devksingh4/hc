@@ -26,6 +26,10 @@ module.exports.getTime = () => {
   let rMinutes = d.getMinutes()
   let rHours = d.getHours()
 
+  if(rMinutes < 10) {
+    rMinutes = "0" + rMinutes
+  }
+
   let prefix = "A.M."
 
   if(rHours > 12) {

@@ -82,10 +82,12 @@ app.post('/messages', [check('message').escape()], async(req, res) => {
 app.get('/chat', (req, res) => {
   if(req.session.uid) {
     chathandler.joinLobby(req.session.name, req.session.uid, (lobby) => {
-      res.render('chat', {
-        name: req.session.name,
-        listener: lobby.uid + '-chat',
-        uid: req.session.uid
+      chathandler.newChat(req.session.name, req.session.uid, 'Hi! I just joined your lobby!', (lob) => {
+        res.render('chat', {
+          name: req.session.name,
+          listener: lobby.uid + '-chat',
+          uid: req.session.uid
+        })
       })
     })
   }
@@ -93,7 +95,7 @@ app.get('/chat', (req, res) => {
 
 app.get('/result', (req, res) => {
   if(req.session.uid && req.session.score) {
-    let depressed = `You possibly HAVE depression. You scored ${Math.round(req.session.score)}/100 on our test. It is advised that you seek help urgently. Depression is treatable but outside help is required.`
+    let depressed = `You possibly HAVE depression. You scored ${Math.round(req.session.score)}/100 on our test. It is advised that you seek help urgently.`
     let notDepressed = `You probably do NOT have depression. You scored ${Math.round(req.session.score)}/100 on our test.`
 
     if(req.session.score < 60) {

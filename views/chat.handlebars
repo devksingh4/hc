@@ -2,7 +2,12 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.5/css/mdb.min.css" rel="stylesheet">        
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/riot@3.13/riot+compiler.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
@@ -17,11 +22,13 @@
 		<br>
 		<div class="jumbotron">
 			<h1 class="display-4">Send Message</h1>
+			<p>A user may not be connected to your lobby. Please, wait if that's the case. This chat serves as a way to connect with others in your journey.<br>
+			You can refresh your browser to leave this conversation.</p>
 			<br>
 			<textarea id="message" class="form-control" placeholder="Your Message Here">
 			</textarea>
 			<br>
-			<button id="send" onclick="buttonClicked()" class="btn btn-success">Send</button>
+			<button id="send" onclick="buttonClicked()" class="btn btn-success"><i class="material-icons">send</i></button>
 		</div>
 	</div>
 
@@ -33,14 +40,18 @@
    	var socket = io();
 
 		window.onload = function() {
+			document.getElementById('message').value = ""
+
 			$.get('/messages', (data) => {
 				data.forEach(addMessages);
 			})	
 		}
 		 
 		function buttonClicked() {
-      sendMessage({name: "{{name}}", message: $("#message").val()});
-			document.getElementById('message').value = ""
+			if(document.getElementById('message').value.trim() != "") {
+				sendMessage({name: "{{name}}", message: $("#message").val()});
+				document.getElementById('message').value = ""
+			}
     }
 
 		console.log("{{listener}}")
