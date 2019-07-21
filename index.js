@@ -97,8 +97,14 @@ app.get('/result', (req, res) => {
   if(req.session.uid && req.session.score) {
     let depressed = `You possibly HAVE depression. You scored ${Math.round(req.session.score)}/100 on our test. It is advised that you seek help urgently.`
     let notDepressed = `You probably do NOT have depression. You scored ${Math.round(req.session.score)}/100 on our test.`
+    let atRisk = `You are at risk for depression. You scored ${Math.round(req.session.score)}/100 on our test. You should increase your awareness and knowledge about depression to help avoid it.`
 
-    if(req.session.score < 60) {
+    if (req.session.score < 80 & req.session.score >= 60) {
+    res.render('result', {
+      message: atRisk
+    })
+    }
+    else if(req.session.score < 60) {
       res.render('result', {
         message: depressed
       })
