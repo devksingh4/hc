@@ -68,10 +68,14 @@ module.exports.joinLobby = (username, useruid, callback) => {
 
 module.exports.newChat = (username, useruid, message, callback) => {
 	let lobby = this.lobbiesFromUser(useruid)[0]
+
+	let d = new Date()
+
 	lobby.chat.push({
 		uid: useruid,
 		message: message,
-		username: username
+		username: username,
+		time: identityhandler.getTime()
 	})
 
 	callback(lobby)

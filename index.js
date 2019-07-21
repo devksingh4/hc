@@ -12,12 +12,13 @@ const { check } = require('express-validator');
 
 const aihandler = require('./handlers/aihandler.js')
 const chathandler = require('./handlers/chathandler.js')
+const identityhandler = require('./handlers/identityhandler.js')
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 io.on('connection', () =>{
-  console.log('a user is connected')
+  console.log('User connected.')
 })
 
 app.use(cookieSession({
@@ -53,13 +54,25 @@ app.get('/survey', (req, res) => {
 app.get('/messages', (req, res) => {
   let lobby = chathandler.lobbiesFromUser(req.session.uid)[0]
 
-  res.json(lobby.chat)
+  let chatHistory = []
+
+  lobby.chat.forEach(chat => {
+    chatHistory.push({
+      name: chat.username,
+      message: chat.message.message,
+      uid: chat.uid,
+      time: chat.time
+    })
+  })
+
+  res.json(chatHistory)
 })
 
 app.post('/messages', [check('message').escape()], async(req, res) => {
   let message = req.body
 
   chathandler.newChat(req.session.name, req.session.uid, message, (lobby) => {
+    message.time = identityhandler.getTime()
     io.emit(lobby.uid + '-chat', message)
   })
 
