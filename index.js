@@ -8,8 +8,7 @@ const cookieSession = require('cookie-session')
 const exphbs = require('express-handlebars')
 const auth = require('./auth/google.js') // auth configuration
 const bodyParser = require('body-parser')
-const xss = require('xss')
-const { check, validationResult } = require('express-validator');
+const { check } = require('express-validator');
 
 
 const aihandler = require('./handlers/aihandler.js')
