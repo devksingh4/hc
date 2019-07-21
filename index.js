@@ -101,16 +101,19 @@ app.get('/result', (req, res) => {
 
     if (req.session.score < 80 & req.session.score >= 60) {
     res.render('result', {
-      message: atRisk
+      message: atRisk,
+      showChat: 'yes'
     })
     }
     else if(req.session.score < 60) {
       res.render('result', {
-        message: depressed
+        message: depressed, 
+        showChat: 'yes'
       })
     } else {
       res.render('result', {
-        message: notDepressed
+        message: notDepressed,
+        showChat: no
       })
     }
   } else {
