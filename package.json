@@ -26,6 +26,7 @@
     "express": "^4.16.4",
     "express-generator": "^4.16.0",
     "express-handlebars": "^3.0.2",
+    "express-validator": "^6.1.1",
     "http": "0.0.0",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
