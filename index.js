@@ -164,15 +164,18 @@ app.get('/', (req, res) => {
   if(uid) { // if the user is signed in
       let score = req.session.score
 
-      if(score) {
-        let title = "Your Results"
-        let message = "Default Body"
+      let title = "Your Results"
+      let message = "Default Body"
 
+      if(score) {
         if(score >= 60) {
           message = "Our survey concluded that you likely DO have depression."
         } else {
           message = "Our survey concluded that you likely HAVE depression."
         }
+      } else {
+        title = "Take our survey."
+        message = "You can take our survey by clicking the survey button below."
       }
 
       res.render("index", {
