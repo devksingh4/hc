@@ -126,7 +126,7 @@ app.post('/survey/submit', (req, res) => {
     aihandler.evaluate(result, (result) => {
       req.session.score = result * 100
   
-      res.json({score: req.session.score})
+      res.redirect('/')
     })
   }
 })
@@ -162,8 +162,23 @@ app.get('/', (req, res) => {
   let uid = req.session.uid
   let ruser_name = req.session.name
   if(uid) { // if the user is signed in
+      let score = req.session.score
+
+      if(score) {
+        let title = "Your Results"
+        let message = "Default Body"
+
+        if(score >= 60) {
+          message = "Our survey concluded that you likely DO have depression."
+        } else {
+          message = "Our survey concluded that you likely HAVE depression."
+        }
+      }
+
       res.render("index", {
         user_name: ruser_name.charAt(0).toUpperCase() + ruser_name.slice(1),
+        title: title,
+        message: message
       }) // render app.handlebars which is in the views folder
   } else {
       res.render("auth_landing") // if the session does not contain the UID, then render the auth_landing to auth the user. 
