@@ -23,8 +23,8 @@
       border: 2px solid  #ececec;
       padding: 15px;
       background-color: white;
-      width: 700px;
-      height: 200px;
+      width: 80%;
+      height: 20%;
       overflow: auto;
       margin: auto;
       position: absolute;
@@ -105,7 +105,8 @@
     text-transform: uppercase;
     transition: 0.5s;
     background-size: 200% auto;
-    width: 50%;
+    width: 75%;
+    height: 9%;
     color: white;
    /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
     box-shadow: 0 0 20px #eee;
