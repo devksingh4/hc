@@ -69,10 +69,10 @@ app.post('/messages', [check('message').escape()], async(req, res) => {
 app.get('/chat', (req, res) => {
   if(req.session.uid) {
     chathandler.joinLobby(req.session.name, req.session.uid, (lobby) => {
-      console.log(lobby)
       res.render('chat', {
         name: req.session.name,
-        listener: lobby.uid + '-chat'
+        listener: lobby.uid + '-chat',
+        uid: req.session.uid
       })
     })
   }

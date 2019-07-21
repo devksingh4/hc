@@ -20,13 +20,13 @@
 			<br>
 			<button id="send" onclick="buttonClicked()" class="btn btn-success">Send</button>
 		</div>
-		<div id="messages">
-		
-		</div>
+		<chat></chat>
 	</div>
 
 	<script>
-   		var socket = io();
+		let messages = []
+
+   	var socket = io();
 
 		window.onload = function() {
 			$.get('/messages', (data) => {
@@ -34,7 +34,7 @@
 			})	
 		}
 		 
-	function buttonClicked() {
+		function buttonClicked() {
       sendMessage({name: "{{name}}", message: $("#message").val()});
 			document.getElementById('message').value = ""
     }
@@ -44,12 +44,13 @@
     socket.on("{{listener}}", addMessages)
 
     function addMessages(message) {
-			console.log(message)
-      $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
+      messages.push(message)
+
+			riot.mount("chat", {    // this is basically client-side rendering 
+			});
     }
 
     function sendMessage(message) {
-			console.log(message)
       $.post('/messages', message)
     }
 	</script>
@@ -61,10 +62,13 @@
 
 	<script type="riot/tag" src="/tags/topBar.html"></script>
 	<script type="riot/tag" src="/tags/bottomBar.html"></script>
+	<script type="riot/tag" src="/tags/chat.html"></script>
 	<script>
 			riot.mount("topBar", {    // this is basically client-side rendering 
 			});
 			riot.mount("bottomBar", {    // this is basically client-side rendering 
+			});
+			riot.mount("chat", {    // this is basically client-side rendering 
 			});
 	</script>
 </body>
