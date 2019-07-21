@@ -54,7 +54,6 @@ app.post('/messages', async(req, res) => {
   io.emit('message', req.body)
 
   let message = xss(req.body.message)
-
   chathandler.newChat(req.session.name, req.session.uid, message)
 
   res.json({})
