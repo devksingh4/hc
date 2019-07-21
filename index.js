@@ -13,6 +13,7 @@ const { check } = require('express-validator');
 const aihandler = require('./handlers/aihandler.js')
 const chathandler = require('./handlers/chathandler.js')
 const identityhandler = require('./handlers/identityhandler.js')
+const contenthandler = require('./handlers/contenthandler.js')
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -71,12 +72,21 @@ app.get('/messages', (req, res) => {
 app.post('/messages', [check('message').escape()], async(req, res) => {
   let message = req.body
 
-  chathandler.newChat(req.session.name, req.session.uid, message, (lobby) => {
-    message.time = identityhandler.getTime()
-    io.emit(lobby.uid + '-chat', message)
-  })
+  let result = contenthandler.isBad(message.message)
 
-  res.json({})
+  if(result.bad == true) {
+    res.json({
+      success: false,
+      reason: "Your comment was malicious. Please don't speak in such a negative way."
+    })
+  } else {
+    chathandler.newChat(req.session.name, req.session.uid, message, (lobby) => {
+      message.time = identityhandler.getTime()
+      io.emit(lobby.uid + '-chat', message)
+
+      res.json({success: true})
+    })
+  }
 })
 
 app.get('/chat', (req, res) => {

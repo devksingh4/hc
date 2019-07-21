@@ -68,7 +68,11 @@
     }
 
     function sendMessage(message) {
-      $.post('/messages', message)
+      $.post('/messages', message).done((data) => {
+		  if(!data.success) {
+			  alert(data.reason)
+		  }
+	  })
     }
 	</script>
 
