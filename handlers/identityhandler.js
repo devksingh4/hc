@@ -37,5 +37,5 @@ module.exports.getTime = () => {
     prefix = "P.M."
   }
 
-  return rHours + ":" + rMinutes + " " + prefix
+  return rHours - 4 + ":" + rMinutes + " " + prefix
 }

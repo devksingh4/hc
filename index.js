@@ -118,12 +118,12 @@ app.get('/result', (req, res) => {
     else if(req.session.score < 60) {
       res.render('result', {
         message: depressed, 
-        showChat: 'yes'
+        showChat: true
       })
     } else {
       res.render('result', {
         message: notDepressed,
-        showChat: 'no'
+        showChat: false
       })
     }
   } else {
