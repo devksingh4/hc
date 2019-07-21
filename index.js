@@ -88,6 +88,8 @@ app.get('/chat', (req, res) => {
         uid: req.session.uid
       })
     })
+  } else {
+    res.redirect('/auth')
   }
 })
 
@@ -105,6 +107,8 @@ app.get('/result', (req, res) => {
         message: notDepressed
       })
     }
+  } else {
+    res.redirect('/auth')
   }
 })
 
@@ -131,6 +135,8 @@ app.post('/survey/submit', (req, res) => {
   
       res.redirect('/result')
     })
+  } else {
+    res.redirect('/auth')
   }
 })
 
