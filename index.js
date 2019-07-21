@@ -82,12 +82,10 @@ app.post('/messages', [check('message').escape()], async(req, res) => {
 app.get('/chat', (req, res) => {
   if(req.session.uid) {
     chathandler.joinLobby(req.session.name, req.session.uid, (lobby) => {
-      chathandler.newChat(req.session.name, req.session.uid, 'Hi! I just joined your lobby!', (lob) => {
-        res.render('chat', {
-          name: req.session.name,
-          listener: lobby.uid + '-chat',
-          uid: req.session.uid
-        })
+      res.render('chat', {
+        name: req.session.name,
+        listener: lobby.uid + '-chat',
+        uid: req.session.uid
       })
     })
   }
