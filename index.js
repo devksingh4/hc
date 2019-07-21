@@ -93,13 +93,16 @@ app.get('/chat', (req, res) => {
 
 app.get('/result', (req, res) => {
   if(req.session.uid && req.session.score) {
-    if(req.session.score < 20) {
+    let depressed = `You possibly HAVE depression. You scored ${Math.round(req.session.score)}/100 on our test. It is advised that you seek help urgently. Depression is treatable but outside help is required.`
+    let notDepressed = `You probably do NOT have depression. You scored ${Math.round(req.session.score)}/100 on our test.`
+
+    if(req.session.score < 60) {
       res.render('result', {
-        message: "You are depressed"
+        message: depressed
       })
     } else {
       res.render('result', {
-        message: "You are NOT depressed"
+        message: notDepressed
       })
     }
   }
@@ -126,7 +129,7 @@ app.post('/survey/submit', (req, res) => {
     aihandler.evaluate(result, (result) => {
       req.session.score = result * 100
   
-      res.redirect('/')
+      res.redirect('/result')
     })
   }
 })
@@ -162,26 +165,8 @@ app.get('/', (req, res) => {
   let uid = req.session.uid
   let ruser_name = req.session.name
   if(uid) { // if the user is signed in
-      let score = req.session.score
-
-      let title = "Your Results"
-      let message = "Default Body"
-
-      if(score) {
-        if(score >= 60) {
-          message = "Our survey concluded that you likely DO have depression."
-        } else {
-          message = "Our survey concluded that you likely HAVE depression."
-        }
-      } else {
-        title = "Take our survey."
-        message = "You can take our survey by clicking the survey button below."
-      }
-
       res.render("index", {
-        user_name: ruser_name.charAt(0).toUpperCase() + ruser_name.slice(1),
-        title: title,
-        message: message
+        user_name: ruser_name.charAt(0).toUpperCase() + ruser_name.slice(1)
       }) // render app.handlebars which is in the views folder
   } else {
       res.render("auth_landing") // if the session does not contain the UID, then render the auth_landing to auth the user. 
