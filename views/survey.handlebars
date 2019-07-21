@@ -9,98 +9,264 @@
     <body style="background-color: snow;">
         <topBar id="topBar"></topBar>
         <bottomBar id="bottombar"></bottomBar>
-        <form method="POST" action="/survey/submit">
-            1. Little interest or pleasure in doing things
-            <select name="interest">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
+        <form method="POST" action="/survey/submit" role="form" class="form-horizontal">
+        <h4>Over the last 2 weeks, how often have you been bothered by any of the following problems?</h4>
+            <div class="form-group">
+                <label for="interest">1. Having little interest or pleasure in doing things</label>
+                <select class="form-control" name="interest" id="interest" required>
+                    <option value="" selected hidden>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="down">2. Feeling down, depressed, or hopeless</label>
+                <select class="form-control" name="down" id="down" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="asleep">3. Having trouble falling asleep (or sleeping too much)</label>
+                <select class="form-control" name="asleep" id="asleep" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="tired">4. Feeling tired or having little energy</label>
+                <select class="form-control" name="tired" id="tired" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="appetite">5. Having a poor appetite or an urge to overeat</label>
+                <select class="form-control" name="appetite" id="appetite" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="feeling">6. Feeling bad about yourself or that you are a letdown to yourself and/or your family</label>
+                <select class="form-control" name="feeling" id="feeling" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="concentrating">7. Having trouble concentrating</label>
+                <select class="form-control" name="concentrating" id="concentrating" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="slow">8. Moving/speaking slower or rasher than usual (lethargy or figeting)</label>
+                <select class="form-control" name="slow" id="slow" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="death">9. Thinking about hurting yourself or that you would be better off dead</label>
+                <select class="form-control" name="death" id="death" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
             <br>
-            2. Feeling down, depressed, or hopeless
-            <select name="down">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
+            <div class="form-group">
+                <label for="difficulty">10. If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?</label>
+                <select class="form-control" name="feeling" id="feeling" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not difficult at all</option>
+                    <option value="1">1 - Somewhat difficult</option>
+                    <option value="2">2 - Very difficult</option>
+                    <option value="3">3 - Extremely difficult</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
             <br>
-            3. Trouble falling or staying asleep, or sleeping too much
-            <select name="asleep">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            4. Feeling tired or having little energy
-            <select name="tired">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            5. Poor appetite or overeating
-            <select name="appetite">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            6. Feeling bad about yourself or that you are a failure or
-have let yourself or your family down
-            <select name="feeling">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            7. Trouble concentrating on things
-            <select name="concentrating">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            8. Moving or speaking so slowly that other people could
-have noticed. Or the opposite being so figety or
-restless that you have been moving around a lot more
-than usual
-            <select name="slow">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            9. Thoughts that you would be better off dead, or of
-            hurting yourself
-            <select name="death">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            10. If you checked off any problems, how difficult
-have these problems made it for you to do
-your work, take care of things at home, or get
-along with other people?
-            <select name="difficulty">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> 
-            <br>
-            <input type="submit" value="Submit">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br><br><br><br><br><br><br>
         </form>
+        
+        <script type="riot/tag" src="/tags/topBar.html"></script>
+        <script type="riot/tag" src="/tags/bottomBar.html"></script>
+        <script>
+            riot.mount("topBar", {    // this is basically client-side rendering 
+            });
+            riot.mount("bottomBar", {    // this is basically client-side rendering 
+            });
+        </script>
+    </body>
+</html>
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/riot@3.13/riot+compiler.min.js"></script>
+    </head>
+    <body style="background-color: snow;">
+        <topBar id="topBar"></topBar>
+        <bottomBar id="bottombar"></bottomBar>
+        <form method="POST" action="/survey/submit" role="form" class="form-horizontal">
+        <h4>Over the last 2 weeks, how often have you been bothered by any of the following problems?</h4>
+            <div class="form-group">
+                <label for="interest">1. Having little interest or pleasure in doing things</label>
+                <select class="form-control" name="interest" id="interest" required>
+                    <option value="" selected hidden>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="down">2. Feeling down, depressed, or hopeless</label>
+                <select class="form-control" name="down" id="down" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="asleep">3. Having trouble falling asleep (or sleeping too much)</label>
+                <select class="form-control" name="asleep" id="asleep" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="tired">4. Feeling tired or having little energy</label>
+                <select class="form-control" name="tired" id="tired" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="appetite">5. Having a poor appetite or an urge to overeat</label>
+                <select class="form-control" name="appetite" id="appetite" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="feeling">6. Feeling bad about yourself or that you are a letdown to yourself and/or your family</label>
+                <select class="form-control" name="feeling" id="feeling" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="concentrating">7. Having trouble concentrating</label>
+                <select class="form-control" name="concentrating" id="concentrating" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="slow">8. Moving/speaking slower or rasher than usual (lethargy or figeting)</label>
+                <select class="form-control" name="slow" id="slow" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <div class="form-group">
+                <label for="death">9. Thinking about hurting yourself or that you would be better off dead</label>
+                <select class="form-control" name="death" id="death" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not at all</option>
+                    <option value="1">1 - A few times</option>
+                    <option value="2">2 - More than half the days</option>
+                    <option value="3">3 - Nearly every day</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="difficulty">10. If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?</label>
+                <select class="form-control" name="feeling" id="feeling" required>
+                    <option value="" selected disabled>Please select an option</option>
+                    <option value="0">0 - Not difficult at all</option>
+                    <option value="1">1 - Somewhat difficult</option>
+                    <option value="2">2 - Very difficult</option>
+                    <option value="3">3 - Extremely difficult</option>
+                </select>
+                <div class="invalid-feedback">Please select an answer</div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br><br><br><br><br><br><br>
+        </form>
+        
         <script type="riot/tag" src="/tags/topBar.html"></script>
         <script type="riot/tag" src="/tags/bottomBar.html"></script>
         <script>
