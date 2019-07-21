@@ -6,10 +6,11 @@
         <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
         <script src="https://cdn.jsdelivr.net/npm/riot@3.13/riot+compiler.min.js"></script>
         <script async src="https://cdn.jsdelivr.net/npm/pwacompat@2.0.9/pwacompat.min.js" integrity="sha384-VcI6S+HIsE80FVM1jgbd6WDFhzKYA0PecD/LcIyMQpT4fMJdijBh0I7Iblaacawc" crossorigin="anonymous"></script>
     </head>
-    <body style="background-color: snow; overflow: hidden; padding: 20px; -webkit-user-select: none;-webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;">
+    <body style="background-color: snow; overflow: scrollable; padding: 20px; -webkit-user-select: none;-webkit-tap-highlight-color: transparent; -webkit-touch-callout: none;">
         <topBar id="topBar"></topBar>
         <bottomBar id="bottombar"></bottomBar>
 
@@ -18,27 +19,29 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script type="riot/tag" src="/tags/topBar.html"></script>
         <script type="riot/tag" src="/tags/bottomBar.html"></script>
-        <div class="card-deck">
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">What is Depression?</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <div class="mentis-container">
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">What is Depression?</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">How can you help yourself or a friend with Depression?</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">How can you help yourself or a friend with Depression?</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                <h5 class="card-title">How can you get in contact with a medical professional or a counselor?</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">How can you get in contact with a medical professional or a counselor?</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <br><br><br><br><br><br><br>
+        <br><br><br>
         <script>
             riot.mount("topBar", {    // this is basically client-side rendering 
             });
