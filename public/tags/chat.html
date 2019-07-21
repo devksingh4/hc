@@ -1,13 +1,13 @@
 <chat>
     <div each="{message in messages}">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 50%; margin: 0 auto;">
             <div class="card-body">
               <h5 class="card-title">{message.name}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Today</h6>
+              <h6 class="card-subtitle mb-2 text-muted">{message.time}</h6>
               <p class="card-text">{message.message}</p>
-              <a href="#" class="card-link">Copy Text</a>
             </div>
-      </div>
+        </div>
+        <br>
     </div>
 
     <script>

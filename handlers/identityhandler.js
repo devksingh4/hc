@@ -19,3 +19,19 @@ module.exports.resetCode = () => {
 
   return text
 }
+
+module.exports.getTime = () => {
+  let d = new Date()
+
+  let rMinutes = d.getMinutes()
+  let rHours = d.getHours()
+
+  let prefix = "A.M."
+
+  if(rHours > 12) {
+    rHours = rHours-12
+    prefix = "P.M."
+  }
+
+  return rHours + ":" + rMinutes + " " + prefix
+}
