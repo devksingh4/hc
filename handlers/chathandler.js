@@ -1,6 +1,10 @@
 const identityhandler = require('./identityhandler.js')
 
+<<<<<<< HEAD
 var lobbies = []
+=======
+const chatHistory = []
+>>>>>>> b49099f1c121e06a996891702ccfefe0a6d2cd4f
 
 module.exports.generateLobby = () => {
 	return {
@@ -18,6 +22,7 @@ module.exports.generateLobby = () => {
 	}
 }
 
+<<<<<<< HEAD
 module.exports.killLobby = (useruid) => {
 	let onelobbies = this.lobbies.filter(lobby => lobby.one.uid == useruid)
 	let twolobbies = this.lobbies.filter(lobby => lobby.two.uid == useruid)
@@ -60,6 +65,13 @@ module.exports.joinLobby = (uid, name, callback) => {
 		tempLobby.one.name = name
 
 		tempLobby.users.push(uid)
+=======
+var tempLobby = this.generateLobby()
+
+module.exports.joinLobby = (uid) => {
+	if(tempLobby.one == undefined) {
+		tempLobby.one = uid
+>>>>>>> b49099f1c121e06a996891702ccfefe0a6d2cd4f
 	} else {
 		reset = true
 		tempLobby.two.uid = uid

@@ -8,7 +8,8 @@ const cookieSession = require('cookie-session')
 const exphbs = require('express-handlebars')
 const auth = require('./auth/google.js') // auth configuration
 const bodyParser = require('body-parser')
-const xss = require('xss')
+const { check } = require('express-validator');
+
 
 const aihandler = require('./handlers/aihandler.js')
 const chathandler = require('./handlers/chathandler.js')
@@ -30,6 +31,9 @@ app.use(cookieParser())
 
 app.use(bodyParser())
 
+
+app.use(express.json())
+
 app.engine('handlebars', exphbs())
 app.set('view engine', 'handlebars')
 app.use(express.static(path.join(__dirname, 'public'))) // public root
@@ -50,10 +54,12 @@ app.get('/survey', (req, res) => {
 
 app.get('/messages', (req, res) => res.json(chathandler.chatHistory))
 
-app.post('/messages', async(req, res) => {
+app.post('/messages', [check('message').escape()], async(req, res) => {
   io.emit('message', req.body)
 
-  let message = xss(req.body.message)
+  let message = req.body.message
+
+
   chathandler.newChat(req.session.name, req.session.uid, message)
 
   res.json({})
