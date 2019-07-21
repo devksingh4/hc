@@ -1,5 +1,6 @@
 const brain = require('brain.js')
 const fs = require('fs')
+const parser = require('./parser.js')
 
 const badWords = fs.readFileSync(__dirname + '/badwords.txt', 'utf8').split('\n')
 
@@ -32,7 +33,7 @@ module.exports.isBad = (str) => {
 
   for (let badword in badWords) {
     let realBad = badWords[badword]
-    if (str.replace(' ', '').trim().toLowerCase().includes(realBad.trim().replace(' ', '').toLowerCase())) {
+    if (parser.replaceAll(str, ' ', '').trim().toLowerCase().includes(parser.replaceAll(realBad, ' ', '').trim().toLowerCase())) {
       count++
     }
   }
