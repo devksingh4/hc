@@ -88,12 +88,14 @@ app.get('/chat', (req, res) => {
         uid: req.session.uid
       })
     })
+  } else {
+    res.redirect('/auth')
   }
 })
 
 app.get('/result', (req, res) => {
   if(req.session.uid && req.session.score) {
-    let depressed = `You possibly HAVE depression. You scored ${Math.round(req.session.score)}/100 on our test. It is advised that you seek help urgently. Depression is treatable but outside help is required.`
+    let depressed = `You possibly HAVE depression. You scored ${Math.round(req.session.score)}/100 on our test. It is advised that you seek help urgently.`
     let notDepressed = `You probably do NOT have depression. You scored ${Math.round(req.session.score)}/100 on our test.`
 
     if(req.session.score < 60) {
@@ -105,6 +107,8 @@ app.get('/result', (req, res) => {
         message: notDepressed
       })
     }
+  } else {
+    res.redirect('/auth')
   }
 })
 
@@ -131,6 +135,8 @@ app.post('/survey/submit', (req, res) => {
   
       res.redirect('/result')
     })
+  } else {
+    res.redirect('/auth')
   }
 })
 
