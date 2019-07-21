@@ -113,7 +113,7 @@ app.get('/result', (req, res) => {
     } else {
       res.render('result', {
         message: notDepressed,
-        showChat: no
+        showChat: 'no'
       })
     }
   } else {
