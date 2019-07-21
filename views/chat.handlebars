@@ -26,7 +26,7 @@
 	</div>
 
 	<script>
-   	var socket = io();
+   		var socket = io();
 
 		window.onload = function() {
 			$.get('/messages', (data) => {
@@ -34,20 +34,22 @@
 			})	
 		}
 		 
-		function buttonClicked() {
+	function buttonClicked() {
       sendMessage({name: "{{name}}", message: $("#message").val()});
 			document.getElementById('message').value = ""
-
-      getMessages()
     }
 
-    socket.on('message', addMessages)
+		console.log("{{listener}}")
+
+    socket.on("{{listener}}", addMessages)
 
     function addMessages(message) {
+			console.log(message)
       $("#messages").append(`<h4> ${message.name} </h4> <p> ${message.message} </p>`)
     }
 
     function sendMessage(message) {
+			console.log(message)
       $.post('/messages', message)
     }
 	</script>

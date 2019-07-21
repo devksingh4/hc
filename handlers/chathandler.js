@@ -1,105 +1,78 @@
 const identityhandler = require('./identityhandler.js')
 
-<<<<<<< HEAD
-var lobbies = []
-=======
-const chatHistory = []
->>>>>>> b49099f1c121e06a996891702ccfefe0a6d2cd4f
+module.exports.lobbies = []
 
 module.exports.generateLobby = () => {
-	return {
-		uid: identityhandler.gen(),
-		history: [],
-		one: {
-			name: undefined,
-			uid: undefined
-		},
-		two: {
-			name: undefined,
-			uid: undefined
-		},
-		users: []
-	}
-}
+	let uid = identityhandler.gen()
 
-<<<<<<< HEAD
-module.exports.killLobby = (useruid) => {
-	let onelobbies = this.lobbies.filter(lobby => lobby.one.uid == useruid)
-	let twolobbies = this.lobbies.filter(lobby => lobby.two.uid == useruid)
+	let lobby = {
+		uid: uid,
+		users: [],
+		chat: [],
+		names: [],
+		die: () => {
+			let newlobbies = []
 
-	let newolobbies = []
-	let newtlobbies = []
+			this.lobbies.forEach(entry => {
+				if(entry.uid != uid) {
+					newlobbies.push(entry)
+				}
+			})
 
-	onelobbies.forEach(entry => {
-		if(!lobbies.includes(entry)) {
-			newolobbies.push(entry)
+			this.lobbies = newlobbies
 		}
-	})
-
-	twolobbies.forEach(entry => {
-		if(!lobbies.includes(entry)) {
-			newtlobbies.push(entry)
-		}
-	})
-
-	lobbies = []
-
-	newolobbies.forEach(lobby => {
-		lobbies.push(lobby)
-	})
-
-	twolobbies.forEach(lobby => {
-		lobbies.push(lobby)
-	})
-}
-
-var tempLobby = this.generateLobby()
-
-module.exports.joinLobby = (uid, name, callback) => {
-	let reset = false
-
-	this.killLobby(uid)
-
-	if(tempLobby.one.uid == undefined) {
-		tempLobby.one.uid = uid
-		tempLobby.one.name = name
-
-		tempLobby.users.push(uid)
-=======
-var tempLobby = this.generateLobby()
-
-module.exports.joinLobby = (uid) => {
-	if(tempLobby.one == undefined) {
-		tempLobby.one = uid
->>>>>>> b49099f1c121e06a996891702ccfefe0a6d2cd4f
-	} else {
-		reset = true
-		tempLobby.two.uid = uid
-		tempLobby.two.name = name
-
-		tempLobby.users.push(uid)
 	}
 
-	callback(tempLobby)
+	this.lobbies.push(lobby)
 
-	if(reset) {
-		lobbies.push(tempLobby)
-		tempLobby = this.generateLobby()
-	}
+	return lobby
 }
 
-module.exports.newChat = (name, uid, message) => {
-	let lobby = lobbies.filter(lobby => lobby.users.includes(uid))[0]
+module.exports.lobbiesFromUser = (useruid) => {
+	return this.lobbies.filter(lobby => lobby.users.includes(useruid))
+}
 
-	if(lobby != undefined) {
-		lobby.history.push({
-			name: name,
-			uid: uid,
-			message: message
-		})
+module.exports.lobbyFromUid = (useruid) => {
+	return this.lobbies.filter(lobby => lobby.uid == useruid)[0]
+}
 
+module.exports.killLobbies = (useruid) => {
+	let dead = this.lobbiesFromUser(useruid)
+	dead.forEach(lobby => lobby.die())
+}
+
+module.exports.joinLobby = (username, useruid, callback) => {
+	this.killLobbies(useruid)
+
+	let lobbies = this.lobbies.filter(lobby => lobby.users.length < 2)
+
+	if(lobbies.length > 0) {
+		let uid = this.lobbies.filter(lobby => lobby.users.length < 2)[0].uid
 		
+		this.lobbyFromUid(uid).users.push(useruid)
+
+		let lobby = this.lobbyFromUid(uid)
+
+		callback(lobby)
+	} else {
+		let lobby = this.generateLobby()
+
+		lobby.users.push(useruid)
+		lobby.names[useruid] = username
+
+		this.lobbies.push(lobby)
+
+		callback(lobby)
 	}
 }
 
-module.exports.lobbies = lobbies
+module.exports.newChat = (username, useruid, message, callback) => {
+	let lobby = this.lobbiesFromUser(useruid)[0]
+	lobby.chat.push({
+		uid: useruid,
+		message: message,
+		username: username
+	})
+
+	callback(lobby)
+}

@@ -10,7 +10,6 @@ const auth = require('./auth/google.js') // auth configuration
 const bodyParser = require('body-parser')
 const { check } = require('express-validator');
 
-
 const aihandler = require('./handlers/aihandler.js')
 const chathandler = require('./handlers/chathandler.js')
 
@@ -30,7 +29,6 @@ app.use(passport.initialize())
 app.use(cookieParser())
 
 app.use(bodyParser())
-
 
 app.use(express.json())
 
@@ -52,23 +50,30 @@ app.get('/survey', (req, res) => {
   }
 })
 
-app.get('/messages', (req, res) => res.json(chathandler.chatHistory))
+app.get('/messages', (req, res) => {
+  let lobby = chathandler.lobbiesFromUser(req.session.uid)[0]
+
+  res.json(lobby.chat)
+})
 
 app.post('/messages', [check('message').escape()], async(req, res) => {
-  io.emit('message', req.body)
+  let message = req.body
 
-  let message = req.body.message
-
-
-  chathandler.newChat(req.session.name, req.session.uid, message)
+  chathandler.newChat(req.session.name, req.session.uid, message, (lobby) => {
+    io.emit(lobby.uid + '-chat', message)
+  })
 
   res.json({})
 })
 
 app.get('/chat', (req, res) => {
   if(req.session.uid) {
-    res.render('chat', {
-      name: req.session.name
+    chathandler.joinLobby(req.session.name, req.session.uid, (lobby) => {
+      console.log(lobby)
+      res.render('chat', {
+        name: req.session.name,
+        listener: lobby.uid + '-chat'
+      })
     })
   }
 })
@@ -107,8 +112,6 @@ app.post('/survey/submit', (req, res) => {
   
     aihandler.evaluate(result, (result) => {
       req.session.score = result * 100
-
-      console.log(req.session.score)
   
       res.json({score: req.session.score})
     })
